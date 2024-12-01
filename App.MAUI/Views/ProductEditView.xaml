@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:App.MAUI.Views"
+             x:Class="App.MAUI.Views.ProductEditView"
+             NavigatedTo="ContentPage_NavigatedTo">
+    <StackLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="Fill">
+
+        <views:SellerHeader/>
+
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="Fill"
+            BackgroundColor="{StaticResource Background}">
+
+            <ScrollView
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="Fill">
+
+                <Grid
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="Fill"
+                    Padding="{Binding Margins}">
+                    <BoxView
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        BackgroundColor="{StaticResource White}"
+                        CornerRadius="25"/>
+
+                    <FlexLayout
+                        JustifyContent="Start"
+                        Direction="Row"
+                        Wrap="Wrap"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="Fill"
+                        Margin="60">
+                        <ImageButton
+                            WidthRequest="275"
+                            HeightRequest="275"
+                            Aspect="AspectFit"
+                            Source="product_image_placeholder.webp"
+                            CornerRadius="15"
+                            Margin="5,0"/>
+
+                        <VerticalStackLayout
+                            HeightRequest="275"
+                            Spacing="10"
+                            FlexLayout.Grow="1"
+                            VerticalOptions="StartAndExpand"
+                            MinimumWidthRequest="257"
+                            Margin="5,0">
+
+                            <Label
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Text="Name"/>
+                            <Editor
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Start"
+                                Text="{Binding Name}"/>
+                            <Label
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Text="Price"/>
+                            <Editor
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Start"
+                                Text="{Binding Price}"/>
+                            <Label
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Text="Inventory"/>
+                            <Editor
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Start"
+                                Text="{Binding NumInStock}"/>
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Spacing="10"
+                            HeightRequest="400"
+                            FlexLayout.Grow="1"
+                            MinimumWidthRequest="257"
+                            Margin="5,10,0,5">
+
+                            <Label
+                                HorizontalOptions="Start"
+                                Text="Description"/>
+
+                            <Editor
+                                HorizontalOptions="Fill"
+                                MinimumWidthRequest="257"
+                                HeightRequest="180"
+                                Text="{Binding Description}"/>
+
+                            <Label
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Text="Markdown Amount"/>
+
+                            <Editor
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Start"
+                                Text="{Binding Markdown}"/>
+
+                            <HorizontalStackLayout
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start">
+                                <CheckBox
+                                    IsChecked="{Binding IsBOGO}"
+                                    Color="{StaticResource Secondary}"/>
+                                <Label
+                                    Text="Buy 1 Get 1 Free"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Margin="0,0,5,0"/>
+                            </HorizontalStackLayout>
+
+                            <Grid
+                                HorizontalOptions="Fill"
+                                MinimumWidthRequest="257">
+                                <Button
+                                    HorizontalOptions="Start"
+                                    HeightRequest="40"
+                                    WidthRequest="126"
+                                    Text="Cancel"
+                                    Clicked="Cancel_Clicked"
+                                    BackgroundColor="{StaticResource DarkBlue}"/>
+
+                                <Button
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    WidthRequest="126"
+                                    Text="Save"
+                                    Clicked="Save_Clicked"
+                                    BackgroundColor="{StaticResource Secondary}"/>
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </FlexLayout>
+
+                </Grid>
+
+            </ScrollView>
+
+            <views:SellersSideMenu
+                VerticalOptions="Fill"
+                WidthRequest="257"
+                HorizontalOptions="Start"/>
+
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>

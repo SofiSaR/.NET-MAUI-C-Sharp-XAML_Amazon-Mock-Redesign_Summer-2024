@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HorizontalStackLayout
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.MAUI.Views.SellersSideMenu">
+
+    <BoxView
+        x:Name="Strip"
+        BackgroundColor="{StaticResource PrimaryLight}"
+        VerticalOptions="Fill"
+        HorizontalOptions="Start"
+        WidthRequest="18"/>
+
+    <Grid
+        x:Name="SidePanel">
+        <VerticalStackLayout
+            x:Name="Options"
+            BackgroundColor="{StaticResource PrimaryLight}"
+            VerticalOptions="Fill" 
+            WidthRequest="232"
+            Padding="0,10"
+            Margin="0,0,7,0"
+            IsVisible="{Binding PaneVisible}">
+            <Button
+                BackgroundColor="{StaticResource Transparent}"
+                Text="Products"
+                HeightRequest="40"
+                FontSize="16"
+                Padding="0,0,95,0"
+                HorizontalOptions="Fill"
+                Clicked="ProductNav_Clicked"/>
+
+            <Button
+                BackgroundColor="{StaticResource Transparent}"
+                Text="Store Settings"
+                HeightRequest="40"
+                FontSize="16"
+                Padding="0,0,55,0"
+                HorizontalOptions="Fill"
+                Clicked="StoreSettingsNav_Clicked"/>
+
+            <Button
+                BackgroundColor="{StaticResource Transparent}"
+                Text="&lt; Logout"
+                HeightRequest="40"
+                FontSize="16"
+                Padding="0,0,90,0"
+                HorizontalOptions="Fill"
+                Clicked="Logout_Clicked" />
+
+        </VerticalStackLayout>
+
+        <ImageButton
+            x:Name="CollapseButton"
+            VerticalOptions="Center"
+            HorizontalOptions="End"
+            WidthRequest="30"
+            HeightRequest="45"
+            BackgroundColor="{StaticResource PrimaryLight}"
+            CornerRadius="10"
+            Clicked="ImageButton_Clicked"
+            Aspect="AspectFit"
+            Source="arrow_left_white.png"
+            Padding="0,15"/>
+
+    </Grid>
+
+</HorizontalStackLayout>

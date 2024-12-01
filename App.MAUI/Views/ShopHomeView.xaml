@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:App.MAUI.Views"
+             x:Class="App.MAUI.Views.ShopHomeView"
+             NavigatedTo="ShopHome_NavigatedTo">
+    <StackLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        BackgroundColor="{StaticResource Background}">
+
+        <views:ShopHeader/>
+
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+
+            <Label
+                Text="Products"
+                FontFamily="AvenirHeavy"
+                FontSize="Large"
+                Margin="80,50,0,0"/>
+
+            <ScrollView
+                Orientation="Both"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="Fill"
+                    Margin="0,120,0,80"
+                    Padding="80,50,80,30"
+                    Spacing="20"
+                    BackgroundColor="{StaticResource White}">
+
+                    <CollectionView ItemsSource="{Binding Products}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                Orientation="Vertical"
+                                Span="3"
+                                VerticalItemSpacing="10"
+                                HorizontalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                <VerticalStackLayout
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Fill">
+                                        <ImageButton
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Start"
+                                            Aspect="AspectFit"
+                                            Source="product_image_placeholder.webp"
+                                            CornerRadius="15"
+                                            Margin="0,0,0,7"/>
+                                        <Label
+                                            VerticalOptions="Start"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Name}"
+                                            FontSize="19"
+                                            HorizontalOptions="Fill"
+                                            Margin="0,7"/>
+                                        <Label
+                                            VerticalOptions="Start"
+                                            FontFamily="AvenirMedium"
+                                            FontSize="Medium"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding DisplayPrice}"
+                                            HorizontalOptions="Fill"
+                                            Margin="0,7"/>
+                                        <Button
+                                            VerticalOptions="Start"
+                                            HeightRequest="42"
+                                            Text="{Binding CartButtonText}"
+                                            Margin="0,0,0,7"
+                                            FontSize="15"
+                                            Padding="10"
+                                            BackgroundColor="{Binding CartButtonColor}"
+                                            CornerRadius="0"
+                                            Command="{Binding BuyCommand}"
+                                            CommandParameter="{Binding}"
+                                            Clicked="Button_Clicked"/>
+
+                                    </VerticalStackLayout>
+                                    
+                                    <HorizontalStackLayout
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="StartAndExpand"
+                                        Spacing="8"
+                                        Margin="0,10,0,0">
+                                        <Frame
+                                            CornerRadius="3"
+                                            Padding="8,4"
+                                            BorderColor="{StaticResource Black}"
+                                            BackgroundColor="{StaticResource Black}"
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="StartAndExpand"
+                                            IsVisible="{Binding IsBOGO}">
+                                            <Label
+                                                Text="BOGO"
+                                                FontSize="11"
+                                                FontFamily="AvenirHeavy"
+                                                TextColor="{StaticResource White}"/>
+
+                                        </Frame>
+
+                                        <Frame
+                                            CornerRadius="3"
+                                            Padding="8,4"
+                                            BorderColor="{StaticResource Black}"
+                                            BackgroundColor="{StaticResource Black}"
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="StartAndExpand"
+                                            IsVisible="{Binding HasMarkdown}">
+                                            <Label
+                                                Text="{Binding DisplayMarkdown}"
+                                                FontSize="11"
+                                                FontFamily="AvenirHeavy"
+                                                TextColor="{StaticResource White}">
+        
+
+                                            </Label>
+
+                                        </Frame>
+    
+                                    </HorizontalStackLayout>
+                                    <ImageButton
+                                        Source="{Binding HeartIconSource}"
+                                        Aspect="AspectFit"
+                                        HeightRequest="25"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        Command="{Binding AddToWishlistCommand}"
+                                        CommandParameter="{Binding}"
+                                        Margin="0,10,10,0"
+                                        BackgroundColor="{StaticResource Transparent}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+            <views:ShopperSidePanel
+                WidthRequest="305"
+                HorizontalOptions="End"
+                VerticalOptions="Fill"/>
+
+            <views:MiniCart
+                WidthRequest="305"
+                HorizontalOptions="End"
+                VerticalOptions="Fill"/>
+
+            <views:WishlistSelectDialogView
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>

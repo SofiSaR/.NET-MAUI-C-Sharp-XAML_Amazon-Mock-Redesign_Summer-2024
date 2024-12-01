@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:App.MAUI.Views"
+             x:Class="App.MAUI.Views.ProductManagementView"
+             NavigatedTo="ContentPage_NavigatedTo">
+    <StackLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+        
+        <views:SellerHeader/>
+
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource Background}">
+
+            <ScrollView
+                Orientation="Both"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="{Binding Margins}"
+                    Spacing="20">
+                    <Label
+                        Text="Products"
+                        FontFamily="AvenirHeavy"
+                        FontSize="Large"/>
+                    <ImageButton
+                        HorizontalOptions="Start"
+                        Source="plus_white.png"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        BackgroundColor="{StaticResource DarkBlue}"
+                        Padding="12"
+                        CornerRadius="8"
+                        Clicked="Add_Clicked"/>
+                    <Grid
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="15"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid
+                            Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="65"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="End"
+                                Padding="0,0,2,0"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="ID"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="Photo"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Start"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Text="Name"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Start"
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Text="Description"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                Text="Price"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Grid.Row="0"
+                                Grid.Column="5"
+                                Text="Inventory"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Grid.Row="0"
+                                Grid.Column="6"
+                                Text="Edit"/>
+                            <Label
+                                FontFamily="AvenirMedium"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Grid.Row="0"
+                                Grid.Column="7"
+                                Text="Delete"/>
+                        </Grid>
+
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.RowSpan="3"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="{StaticResource White}"
+                            CornerRadius="25"/>
+
+                        <ListView
+                            Grid.Row="2"
+                            SelectedItem="{Binding SelectedProduct}"
+                            ItemsSource="{Binding Products}"
+                            SeparatorVisibility="Default">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid
+                                            HeightRequest="40" Padding="0,2.5,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="75"/>
+                                                <ColumnDefinition Width="210"/>
+                                                <ColumnDefinition Width="170"/>
+                                                <ColumnDefinition Width="75"/>
+                                                <ColumnDefinition Width="65"/>
+                                                <ColumnDefinition Width="65"/>
+                                                <ColumnDefinition Width="65"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalTextAlignment="End"
+                                                Padding="0,0,5,0"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="{Binding Id}"/>
+                                            <ImageButton
+                                                Aspect="AspectFit"
+                                                Source="product_image_placeholder.webp"
+                                                HorizontalOptions="Center"
+                                                Grid.Row="0"
+                                                CornerRadius="4"
+                                                Grid.Column="1"
+                                                Margin="0,2.5,0,5"/>
+                                            <Label
+                                                HorizontalTextAlignment="Start"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Text="{Binding TrimmedName}"/>
+                                            <Label
+                                                HorizontalTextAlignment="Start"
+                                                Grid.Row="0"
+                                                Grid.Column="3"
+                                                Text="{Binding TrimmedDescription}"/>
+                                            <Label
+                                                HorizontalTextAlignment="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="4"
+                                                Text="{Binding DisplayPrice}"/>
+                                            <Label
+                                                HorizontalTextAlignment="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="5"
+                                                Text="{Binding NumInStock}"/>
+                                            <Button
+                                                Grid.Row="0"
+                                                Grid.Column="6"
+                                                Text="Edit"
+                                                FontSize="Body"
+                                                Padding="10,0"
+                                                BackgroundColor="{StaticResource DarkBlue}"
+                                                CornerRadius="8"
+                                                Command="{Binding EditCommand}"
+                                                CommandParameter="{Binding}"
+                                                Margin="0,2.5,0,5"/>
+                                            <ImageButton
+                                                HorizontalOptions="Center"
+                                                WidthRequest="30"
+                                                Grid.Row="0"
+                                                Aspect="AspectFit"
+                                                Padding="10,5"
+                                                Grid.Column="7"
+                                                CornerRadius="8"
+                                                BackgroundColor="{StaticResource Tertiary}"
+                                                Source="trash_white.webp"
+                                                Command="{Binding DeleteCommand}"
+                                                CommandParameter="{Binding}"
+                                                Clicked="Delete_Clicked"
+                                                Margin="0,2.5,0,5"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+
+                </VerticalStackLayout>
+                
+            </ScrollView>
+
+            <views:SellersSideMenu
+                HorizontalOptions="Start"
+                WidthRequest="257"
+                VerticalOptions="Fill" />
+
+        </Grid>
+        
+    </StackLayout>
+    
+</ContentPage>

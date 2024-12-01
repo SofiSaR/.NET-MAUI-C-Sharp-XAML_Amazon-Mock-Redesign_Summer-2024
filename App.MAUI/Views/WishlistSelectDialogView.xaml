@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:toolkit="http://schemas.microsoft.com/dotnet/maui/toolkit"
+        xmlns:views="clr-namespace:App.MAUI.Views"
+        x:Class="App.MAUI.Views.WishlistSelectDialogView"
+        BackgroundColor="#1C000000"
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill"
+        IsVisible="{Binding ShowWishlistSelectDialog}">
+    
+    <ScrollView
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+        <Grid
+            HeightRequest="500"
+            WidthRequest="450"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,80">
+            <BoxView
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="25"/>
+            <VerticalStackLayout
+                Margin="0,0,0,130"
+                HorizontalOptions="Fill"
+                VerticalOptions="StartAndExpand">
+                <Grid
+                    HorizontalOptions="Fill">
+                    <Button
+                        Margin="10,10,0,0"
+                        HorizontalOptions="Start"
+                        FontSize="16"
+                        Text="+ New Wishlist"
+                        Clicked="CreateWishlist"
+                        BackgroundColor="{StaticResource Transparent}"
+                        TextColor="{StaticResource SecondaryDarkText}"/>
+
+                    <ImageButton
+                        Source="x_black.png"
+                        Aspect="AspectFit"
+                        WidthRequest="15"
+                        VerticalOptions="Center"
+                        Margin="0,0,20,0"
+                        HorizontalOptions="End"
+                        Clicked="Close_Clicked"
+                        BackgroundColor="{StaticResource Transparent}"/>
+
+                </Grid>
+
+                <ListView
+                    HeightRequest="240"
+                    SelectedItem="{Binding SelectedCart}"
+                    ItemsSource="{Binding Carts}"
+                    SeparatorVisibility="Default"
+                    BackgroundColor="{StaticResource Background}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid
+                                    HeightRequest="80">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        IsChecked="{Binding Checked}"
+                                        Color="{StaticResource Tertiary}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="19"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Text="{Binding CartName}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid
+                    Margin="25,10,25,0"
+                    IsVisible="{Binding AddingWishlist}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        Text="{Binding NameToAdd}"
+                        FontSize="18"/>
+                    <Button
+                        Margin="20,0,0,0"
+                        Grid.Column="1"
+                        FontSize="18"
+                        CornerRadius="5"
+                        Text="Add"
+                        BackgroundColor="{StaticResource Gray}"
+                        TextColor="{StaticResource Black}"
+                        Clicked="AddWishlist" />
+                </Grid>
+
+            </VerticalStackLayout>
+
+            <Button
+                Margin="0,0,0,50"
+                Padding="20,0"
+                HeightRequest="50"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Text="Add to Selected Wishlists"
+                Clicked="AddToWishlists"
+                CornerRadius="5"
+                BackgroundColor="{StaticResource SignatureBlue}"/>
+        </Grid>
+    </ScrollView>
+</Grid>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:App.MAUI.Views"
+             x:Class="App.MAUI.MainPage">
+
+    <Grid
+        VerticalOptions="FillAndExpand">
+        <Image
+            Source="amazon_background.webp"
+            VerticalOptions="Center"
+            Aspect="AspectFill" />
+
+        <StackLayout BackgroundColor="#0FF9F8F8">
+
+            <views:MainHeader/>
+
+            <ScrollView
+                VerticalOptions="FillAndExpand">
+                <VerticalStackLayout
+                    Padding="50,50"
+                    Spacing="22">
+
+                    <Label
+                        Text="Login"
+                        Style="{StaticResource Headline}"
+                        TextColor="White"
+                        SemanticProperties.HeadingLevel="Level1" />
+
+                    <Label
+                        Text="Select your login type."
+                        Style="{StaticResource SubHeadline}"
+                        TextColor="White"
+                        SemanticProperties.HeadingLevel="Level2"
+                        SemanticProperties.Description="Select a login type" />
+
+                    <Frame
+                        CornerRadius="25"
+                        Padding="25"
+                        BorderColor="Transparent"
+                        BackgroundColor="#EDFFFFFF"
+                        HasShadow="True"
+                        MaximumWidthRequest="600"
+                        MinimumHeightRequest="300"
+                        VerticalOptions="FillAndExpand">
+
+                        <VerticalStackLayout
+                            VerticalOptions="Fill"
+                            Spacing="250">
+
+                            <Frame
+                                CornerRadius="15"
+                                Padding="6"
+                                BorderColor="{StaticResource SignatureBlue}"
+                                BackgroundColor="{StaticResource SignatureBlue}"
+                                MaximumWidthRequest="350"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="StartAndExpand">
+
+                                <FlexLayout
+                                    Direction="Row"
+                                    Wrap="Wrap"
+                                    JustifyContent="SpaceEvenly"
+                                    MaximumWidthRequest="350">
+
+                                    <Button
+                                        HeightRequest="45"
+                                        Background="{Binding ShopperButtonColor}"
+                                        Text="Shopper"
+                                        Clicked="ShopperClicked"
+                                        FlexLayout.Grow="1" />
+
+                                    <Button
+                                        HeightRequest="45"
+                                        Background="{Binding SellerButtonColor}"
+                                        Text="Seller"
+                                        Clicked="SellerClicked"
+                                        FlexLayout.Grow="1" />
+
+                                </FlexLayout>
+
+                            </Frame>
+
+                            <Button
+                                HeightRequest="55"
+                                BackgroundColor="{StaticResource SignatureBlue}"
+                                Text="Continue >"
+                                Clicked="ContinueClicked"
+                                MaximumWidthRequest="220"
+                                VerticalOptions="End" />
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+                
+                </VerticalStackLayout>
+            
+            </ScrollView>
+        
+        </StackLayout>
+        
+    </Grid>
+
+</ContentPage>

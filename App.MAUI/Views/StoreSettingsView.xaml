@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:App.MAUI.Views"
+             x:Class="App.MAUI.Views.StoreSettingsView">
+    <StackLayout
+    VerticalOptions="FillAndExpand"
+    HorizontalOptions="FillAndExpand">
+
+        <views:SellerHeader/>
+
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="Fill"
+            BackgroundColor="{StaticResource Background}">
+
+            <ScrollView
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="Fill">
+
+                <Grid
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="Fill"
+                    Padding="{Binding Margins}">
+                    <BoxView
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        BackgroundColor="{StaticResource White}"
+                        CornerRadius="25"/>
+
+                    <VerticalStackLayout
+                        Spacing="10"
+                        VerticalOptions="StartAndExpand"
+                        Margin="65,60">
+
+                        <Label
+                            Text="Store Settings"
+                            FontFamily="AvenirHeavy"
+                            FontSize="Large"
+                            Margin="0,0,0,30"/>
+                        <Label
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            Text="Tax Rate"/>
+                        <Entry
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Start"
+                            Text="{Binding TaxRate}"/>
+                        <Button
+                            Margin="0,20,0,0"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            WidthRequest="126"
+                            Text="Save"
+                            BackgroundColor="{StaticResource Secondary}"/>
+
+                    </VerticalStackLayout>
+
+                </Grid>
+
+            </ScrollView>
+
+            <views:SellersSideMenu
+                VerticalOptions="Fill"
+                WidthRequest="257"
+                HorizontalOptions="Start"/>
+
+        </Grid>
+
+    </StackLayout>
+    
+</ContentPage>

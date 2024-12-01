@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VerticalStackLayout
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.MAUI.Views.ShopHeader"
+    BackgroundColor="{StaticResource Primary}"
+    HeightRequest="55">
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Center"
+        Padding="50,0,50,0">
+        <ImageButton
+            Source="amazon_logo.webp"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            HeightRequest="45"
+            Aspect="AspectFit"
+            Clicked="ImageButton_Clicked"
+            BackgroundColor="{StaticResource Transparent}"/>
+
+        <HorizontalStackLayout
+            HorizontalOptions="End"
+            VerticalOptions="Center"
+            Spacing="30"
+            Margin="0,7,0,0">
+        
+            <ImageButton
+                Source="user_white.png"
+                HeightRequest="20"
+                Clicked="ImageButton_Clicked"
+                BackgroundColor="{StaticResource Transparent}"/>
+
+            <Grid>
+                <Label
+                    Margin="4.2,0,0,12"
+                    FontSize="12"
+                    FontFamily="AvenirHeavy"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding NumCartItems}"
+                    TextColor="{StaticResource White}"/>
+                <ImageButton
+                    Source="cart_white.png"
+                    HeightRequest="20"
+                    Aspect="AspectFit"
+                    Clicked="CartButton_Clicked"
+                    BackgroundColor="{StaticResource Transparent}"/>
+            </Grid>
+
+        </HorizontalStackLayout>
+
+    </Grid>
+
+</VerticalStackLayout>

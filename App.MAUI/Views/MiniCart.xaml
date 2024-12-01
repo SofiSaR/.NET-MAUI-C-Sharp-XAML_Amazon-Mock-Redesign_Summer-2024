@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.MAUI.Views.MiniCart">
+
+    <ScrollView
+        x:Name="MiniCartView"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="Fill"
+        BackgroundColor="{StaticResource Primary}"
+        IsVisible="{Binding CartVisible}">
+        <ScrollView.Shadow>
+            <Shadow Brush="White"
+                Offset="0,0"
+                Radius="2.55"
+                Opacity="0.05" />
+        </ScrollView.Shadow>
+
+        <VerticalStackLayout
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="Fill"
+            WidthRequest="305"
+            Padding="30"
+            IsVisible="{Binding MiniCartVisible}"
+            Spacing="20">
+            <Grid>
+                <Label
+                    Text="Cart"
+                    FontFamily="AvenirHeavy"
+                    TextColor="{StaticResource White}"
+                    FontSize="28"/>
+                <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Text="{Binding CartCount}"
+                    TextColor="{StaticResource White}"
+                    FontSize="14"/>
+            </Grid>
+
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="{StaticResource White}"/>
+
+            <CollectionView
+                HorizontalOptions="Fill"
+                VerticalOptions="StartAndExpand"
+                ItemsSource="{Binding CartItems}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            HorizontalOptions="Fill"
+                            VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ImageButton
+                                Grid.Column="0"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Source="product_image_placeholder.webp"
+                                Aspect="AspectFit"
+                                WidthRequest="75"
+                                HeightRequest="75"
+                                CornerRadius="7" />
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                Spacing="10"
+                                Margin="0,0,15,0">
+                                <Label
+                                    FontSize="16"
+                                    TextColor="{StaticResource White}"
+                                    Text="{Binding TrimmedName}" />
+                                <HorizontalStackLayout
+                                    HorizontalOptions="Start"
+                                    Spacing="8">
+                                    <Picker
+                                        ItemsSource="{Binding QuantityList}"
+                                        ItemDisplayBinding="{Binding}"
+                                        SelectedIndexChanged="Picker_SelectedIndexChanged"
+                                        SelectedItem="{Binding QuantityEdit}"
+                                        HorizontalOptions="Start"
+                                        HeightRequest="25"
+                                        MinimumWidthRequest="55"
+                                        BackgroundColor="{StaticResource White}"
+                                        IsVisible="{Binding PickerVisible}" />
+                                    <Grid
+                                        HorizontalOptions="StartAndExpand"
+                                        HeightRequest="25"
+                                        IsVisible="{Binding DropdownVisible}">
+                                        <Label
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="Center"
+                                            Margin="5,0,24,0"
+                                            FontSize="15"
+                                            TextColor="{StaticResource White}"
+                                            Text="{Binding Quantity}" />
+                                        <ImageButton
+                                            Aspect="AspectFit"
+                                            Source="arrow_down_white.png"
+                                            BorderWidth="0.5"
+                                            BorderColor="{StaticResource White}"
+                                            BackgroundColor="{StaticResource Transparent}"
+                                            CornerRadius="4"
+                                            WidthRequest="50"
+                                            Padding="25,10,8,9"
+                                            Command="{Binding ChangePickerVisibility}"
+                                            CommandParameter="{Binding}"/>
+                                    </Grid>
+                                    <Label
+                                        FontSize="17"
+                                        VerticalTextAlignment="Start"
+                                        TextColor="{StaticResource White}"
+                                        Text="x" />
+                                    <Label
+                                        FontSize="18"
+                                        TextColor="{StaticResource White}"
+                                        FontFamily="AvenirMedium"
+                                        Text="{Binding DisplayPrice}" />
+
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalOptions="StartAndExpand"
+                                    Spacing="8">
+                                    <Frame
+                                        CornerRadius="3"
+                                        Padding="8,4"
+                                        BorderColor="{StaticResource Black}"
+                                        BackgroundColor="{StaticResource Black}"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="StartAndExpand"
+                                        IsVisible="{Binding IsBOGO}">
+                                        <Label
+                                            Text="BOGO"
+                                            FontSize="11"
+                                            FontFamily="AvenirHeavy"
+                                            TextColor="{StaticResource White}"/>
+
+                                    </Frame>
+                                
+                                    <Frame
+                                        CornerRadius="3"
+                                        Padding="8,4"
+                                        BorderColor="{StaticResource Black}"
+                                        BackgroundColor="{StaticResource Black}"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="StartAndExpand"
+                                        IsVisible="{Binding HasMarkdown}">
+                                        <Label
+                                            Text="{Binding DisplayMarkdown}"
+                                            FontSize="11"
+                                            FontFamily="AvenirHeavy"
+                                            TextColor="{StaticResource White}">
+                                        
+
+                                        </Label>
+
+                                    </Frame>
+                                    
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+                            <ImageButton
+                                Grid.Column="2"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Margin="0,29,0,0"
+                                Command="{Binding DeleteCommand}"
+                                CommandParameter="{Binding}"
+                                Clicked="DeleteFromCart_Clicked"
+                                Source="x_white.png"
+                                WidthRequest="12"
+                                HeightRequest="12"
+                                BackgroundColor="{StaticResource Transparent}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"
+                IsVisible="{Binding CartNotEmpty}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="Subtotal:"
+                    HorizontalOptions="Start" />
+                <Label
+                    Grid.Row="0"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="{Binding SubTotal}"
+                    HorizontalOptions="End" />
+                <Label
+                    Grid.Row="1"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="{Binding TaxText}"
+                    HorizontalOptions="Start" />
+                <Label
+                    Grid.Row="1"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="{Binding Tax}"
+                    HorizontalOptions="End" />
+                <Label
+                    Grid.Row="2"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="Total:"
+                    HorizontalOptions="Start" />
+                <Label
+                    Grid.Row="2"
+                    TextColor="{StaticResource White}"
+                    FontFamily="AvenirMedium"
+                    FontSize="20"
+                    Text="{Binding Total}"
+                    HorizontalOptions="End" />
+
+            </Grid>
+
+            <Button
+                VerticalOptions="Start"
+                HeightRequest="42"
+                Text="Go to Cart"
+                Margin="0,0,0,7"
+                FontSize="15"
+                Padding="10"
+                BackgroundColor="{StaticResource SecondaryLight}"
+                CornerRadius="0"
+                Command="{Binding BuyCommand}"
+                CommandParameter="{Binding}"
+                IsVisible="{Binding CartNotEmpty}"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VerticalStackLayout
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.MAUI.Views.MainHeader"
+    BackgroundColor="{StaticResource Primary}"
+    HeightRequest="55">
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Center"
+        Padding="50,0,50,0">
+        <ImageButton
+            Source="amazon_logo.webp"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            HeightRequest="45"
+            Aspect="AspectFit"
+            Clicked="ImageButton_Clicked"
+            BackgroundColor="{StaticResource Transparent}"/>
+
+    </Grid>
+
+</VerticalStackLayout>
